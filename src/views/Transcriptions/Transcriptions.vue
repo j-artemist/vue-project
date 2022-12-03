@@ -104,6 +104,3 @@ export default {
   align-items: center;
 }
 </style>
-
-//
-<text-area v-on:change="handleTextFieldChange($event)" />

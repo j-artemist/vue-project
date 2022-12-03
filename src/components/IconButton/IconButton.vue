@@ -32,5 +32,3 @@ button {
   background: transparent;
 }
 </style>
-
-// can we make svg colour darken on hover? //

@@ -2,13 +2,13 @@
 export default {
   name: "text-input",
   props: {
-    value: { required: true, type: String, default: "" },
+    value: { required: false, type: String, default: "" },
     ariaLabel: { required: false, type: String },
     placeholder: { required: false, type: String },
   },
   methods: {
     emitInputChangeEvent(event) {
-      this.$emit("change", event);
+      this.$emit("text-input-change", event.target.value);
     },
   },
 };

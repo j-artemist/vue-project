@@ -2,14 +2,14 @@
 export default {
   name: "text-area",
   props: {
-    value: { required: false, type: String },
+    value: { required: false, type: String, default: "" },
     ariaLabel: { required: false, type: String },
     placeholder: { required: false, type: String },
   },
   methods: {
     handleChange(event) {
       this.resize();
-      this.$emit("change", event);
+      this.$emit("text-area-change", event.target.value);
     },
     resize() {
       const element = this.$refs["textarea"];

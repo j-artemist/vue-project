@@ -19,7 +19,6 @@ export default {
     },
     addRow() {
       this.$store.dispatch("addTranscription");
-      console.log("adding row");
     },
   },
   computed: {
@@ -41,5 +40,3 @@ export default {
     :isLoading="isLoading"
   />
 </template>
-
-<style scoped></style>

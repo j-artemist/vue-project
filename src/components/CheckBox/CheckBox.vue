@@ -2,13 +2,7 @@
 export default {
   name: "check-box",
   props: {
-    value: { required: false, type: Boolean },
     ariaLabel: { required: false, type: String },
-  },
-  methods: {
-    emitCheckBoxCheckedEvent(event) {
-      this.$emit("check-box-checked", event.target.checked);
-    },
   },
 };
 </script>
@@ -17,9 +11,6 @@ export default {
   <input
     :aria-label="ariaLabel"
     type="checkbox"
-    :checked="value"
-    @change="emitCheckBoxCheckedEvent"
-    value="value"
   />
 </template>
 

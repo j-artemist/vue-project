@@ -9,9 +9,6 @@ export default {
   components: {
     TranscriptionListItem,
   },
-  mounted() {
-    console.log(this.items);
-  },
 };
 </script>
 
@@ -24,7 +21,6 @@ export default {
         :id="item.id"
         :label="item.voice"
         :text="item.text"
-        :checked="item.checked"
         v-on="$listeners"
       />
     </ul>
@@ -46,5 +42,3 @@ export default {
   border-bottom: solid 1px var(--border-color);
 }
 </style>
-
-// should we just pass in item instead of splitting up props?
