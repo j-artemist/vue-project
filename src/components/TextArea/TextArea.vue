@@ -13,12 +13,8 @@ export default {
     },
     resize() {
       const element = this.$refs["textarea"];
-      element.style.height = element.scrollHeight - 4 + "px";
-    },
-  },
-  watch: {
-    value() {
-      this.resize();
+      element.style.height = "auto";
+      element.style.height = element.scrollHeight + "px";
     },
   },
   mounted() {

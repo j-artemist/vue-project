@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     emitUploadDataEvent() {
-      const data = { voice: "test" };
-      this.$emit("upload-data", data);
+      this.$emit("upload-data");
     },
     emitGetDataEvent() {
       this.$emit("get-data");

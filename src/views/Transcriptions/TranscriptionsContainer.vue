@@ -20,6 +20,9 @@ export default {
     addRow() {
       this.$store.dispatch("addTranscription");
     },
+    handleFormChange(formData) {
+      this.$store.dispatch("updateTranscription", formData);
+    },
   },
   computed: {
     ...mapGetters(["transcriptions", "isLoading"]),
@@ -33,6 +36,8 @@ export default {
 <template>
   <transcriptions
     :items="transcriptions"
+    @text-field-change="handleFormChange"
+    @voice-field-change="handleFormChange"
     @delete-transcription="deleteTranscription"
     @upload-data="uploadData"
     @get-data="getData"

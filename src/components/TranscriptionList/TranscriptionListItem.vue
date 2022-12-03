@@ -16,12 +16,18 @@ export default {
   },
   props: {
     id: { required: true, type: Number },
-    label: { required: true, type: String },
+    voice: { required: true, type: String },
     text: { required: true, type: String },
   },
   methods: {
     emitDeleteEvent() {
       this.$emit("delete-transcription", this.id);
+    },
+    emitVoiceFieldChangeEvent(value) {
+      this.$emit("voice-field-change", { id: this.id, voice: value });
+    },
+    emitTextFieldChangeEvent(value) {
+      this.$emit("text-field-change", { id: this.id, text: value });
     },
   },
 };
@@ -35,7 +41,8 @@ export default {
     <div class="content">
       <div class="label-container">
         <text-input
-          :value="label"
+          @text-input-change="emitVoiceFieldChangeEvent"
+          :value="voice"
           ariaLabel="name of voice"
           placeholder="name of voice"
         />
@@ -49,6 +56,7 @@ export default {
       </div>
       <div class="text-area-container">
         <text-area
+          @text-area-change="emitTextFieldChangeEvent"
           ariaLabel="transcribed recording"
           :value="text"
           id="text"
@@ -96,8 +104,11 @@ export default {
   color: var(--medium-gray-color);
 }
 
-.icon-button-container {
-  visibility: hidden;
+/* if device has no touch screen */
+@media (any-pointer: fine) {
+  .icon-button-container {
+    visibility: hidden;
+  }
 }
 
 .list-item:hover .icon-button-container {
@@ -111,7 +122,3 @@ export default {
   height: 100%;
 }
 </style>
-
-//TODO checked: { required: true, type: Boolean }, // TODO add aria-labelled by
-for //
-<label class="label" for="text">{{ label }}</label>

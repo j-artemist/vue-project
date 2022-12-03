@@ -11,16 +11,35 @@ export default new Vuex.Store({
   state: {
     loading: false,
     transcriptions: [],
+    error: null,
   },
   mutations: {
-    setTranscription(state) {
-      state.transcriptions.push(createEmptyTranscription());
+    setError(state, payload) {
+      state.error = payload;
+    },
+    setTranscription(state, payload) {
+      const itemIndex = state.transcriptions.findIndex((item) => {
+        return item.id === payload.id;
+      });
+
+      const updatedItem = {
+        ...state.transcriptions[itemIndex],
+        ...payload,
+      };
+
+      state.transcriptions[itemIndex] = updatedItem;
+    },
+    setNewTranscription(state) {
+      const ids = state.transcriptions.map((item) => item.id);
+      const emptyTranscription = createEmptyTranscription(ids);
+      const newArray = [...state.transcriptions, emptyTranscription];
+      state.transcriptions = newArray;
     },
     setTranscriptions(state, payload) {
       state.transcriptions = payload;
     },
-    toggleLoading(state) {
-      state.loading = !state.loading;
+    setLoading(state, payload) {
+      state.loading = payload;
     },
     deleteTranscription(state, payload) {
       const filteredTranscriptions = removeObjectWithId(
@@ -31,22 +50,28 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    updateTranscription({ commit }, payload) {
+      commit("setTranscription", payload);
+    },
     deleteTranscription({ commit }, payload) {
       commit("deleteTranscription", payload);
     },
     addTranscription({ commit }) {
-      commit("setTranscription");
+      commit("setNewTranscription");
     },
     async getTranscriptions({ commit }) {
-      commit("toggleLoading");
-      const response = await fetch(TRANSCRIPTION_ENDPOINT);
-      const data = await response.json();
-      commit("setTranscriptions", data);
-      commit("toggleLoading");
+      commit("setLoading", true);
+      try {
+        const response = await fetch(TRANSCRIPTION_ENDPOINT);
+        const data = await response.json();
+        commit("setTranscriptions", data);
+      } catch (error) {
+        commit("setError", error);
+      }
+      commit("setLoading", false);
     },
     async uploadTranscriptions({ commit, state }) {
-      commit("toggleLoading");
-
+      commit("setLoading", true);
       try {
         const config = {
           method: "POST",
@@ -58,17 +83,11 @@ export default new Vuex.Store({
         };
         const response = await fetch(TRANSCRIPTION_ENDPOINT, config);
         const data = await response.json();
-        if (response.ok) {
-          console.log(data);
-          commit("setTranscriptions", data);
-        } else {
-          //
-        }
+        commit("setTranscriptions", data);
       } catch (error) {
-        console.log(error);
+        commit("setError", error);
       }
-
-      commit("toggleLoading");
+      commit("setLoading", false);
     },
   },
   getters: {
