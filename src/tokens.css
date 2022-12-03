@@ -1,0 +1,20 @@
+:root {
+    --white-color: #ffffff;
+    --background-color: #f6f7f8;
+    --secondary-background-color: var(--white-color);
+    --heading-color: #414c5e;
+    --purple-color: #859eff;
+    --light-gray-color: #d0d4da;
+    --medium-gray-color: #566074;
+    --gray-color: #8f97a8;
+    --blue-color: #33A5FF;
+    --border-color: #eaedef;
+    --font-size-root: 16px;
+    --font-size-large: 18px;
+
+
+  }
+
+  
+
+  
