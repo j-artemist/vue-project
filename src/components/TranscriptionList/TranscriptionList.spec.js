@@ -1,12 +1,9 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import TranscriptionList from "./TranscriptionList.vue";
 import TranscriptionListItem from "./TranscriptionListItem.vue";
-import { axe, toHaveNoViolations } from "jest-axe";
-
-expect.extend(toHaveNoViolations);
 
 describe("TranscriptionList", () => {
-  const wrapper = mount(TranscriptionList, {
+  const wrapper = shallowMount(TranscriptionList, {
     propsData: {
       items: [
         { voice: "voice 1", id: 1, text: "text 1" },
@@ -16,13 +13,7 @@ describe("TranscriptionList", () => {
     },
   });
 
-  it("renders the correct number of items", async () => {
+  it("renders the correct number of items", () => {
     expect(wrapper.findAllComponents(TranscriptionListItem).length).toBe(3);
-  });
-
-  it.skip("should have no accessibility violations", async () => {
-    const results = await axe(wrapper.element);
-
-    expect(results).toHaveNoViolations();
   });
 });

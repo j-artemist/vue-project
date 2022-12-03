@@ -1,9 +1,9 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Container from "./Container.vue";
 
 describe("Container", () => {
-  it("renders default slot as expected", async () => {
-    const wrapper = mount(Container, {
+  it("renders default slot as expected", () => {
+    const wrapper = shallowMount(Container, {
       slots: {
         default: "text",
       },

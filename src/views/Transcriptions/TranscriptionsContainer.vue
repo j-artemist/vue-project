@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Transcriptions from "./Transcriptions.vue";
 
 export default {
@@ -8,17 +8,13 @@ export default {
     this.$store.dispatch("getTranscriptions");
   },
   methods: {
+    ...mapActions([
+      "getTranscriptions",
+      "uploadTranscriptions",
+      "addTranscription",
+    ]),
     deleteTranscription(id) {
       this.$store.dispatch("deleteTranscription", id);
-    },
-    getData() {
-      this.$store.dispatch("getTranscriptions");
-    },
-    uploadData() {
-      this.$store.dispatch("uploadTranscriptions");
-    },
-    addRow() {
-      this.$store.dispatch("addTranscription");
     },
     handleFormChange(formData) {
       this.$store.dispatch("updateTranscription", formData);
@@ -39,9 +35,9 @@ export default {
     @text-field-change="handleFormChange"
     @voice-field-change="handleFormChange"
     @delete-transcription="deleteTranscription"
-    @upload-data="uploadData"
-    @get-data="getData"
-    @add-row="addRow"
+    @upload-data="uploadTranscriptions"
+    @get-data="getTranscriptions"
+    @add-row="addTranscription"
     :isLoading="isLoading"
   />
 </template>

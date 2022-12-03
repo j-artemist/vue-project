@@ -1,18 +1,18 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import IconButton from "./IconButton.vue";
 import { axe, toHaveNoViolations } from "jest-axe";
 
 expect.extend(toHaveNoViolations);
 
 describe("IconButton", () => {
-  const wrapper = mount(IconButton, {
+  const wrapper = shallowMount(IconButton, {
     propsData: {
       name: "person",
       ariaLabel: "person",
     },
   });
 
-  it("emits click event on click", async () => {
+  it("emits click event on click", () => {
     wrapper.find("button").trigger("click");
 
     expect(wrapper.emitted("click")).toBeTruthy();
