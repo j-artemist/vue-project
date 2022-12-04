@@ -1,13 +1,10 @@
 import { mount } from "@vue/test-utils";
 import TranscriptionListItem from "./TranscriptionListItem.vue";
-import { axe, toHaveNoViolations } from "jest-axe";
-
-expect.extend(toHaveNoViolations);
 
 describe("TranscriptionListItem", () => {
   const wrapper = mount(TranscriptionListItem, {
     propsData: {
-      label: "a label",
+      voice: "name of the voice",
       text: "transcription text",
       id: 4,
     },
@@ -20,9 +17,23 @@ describe("TranscriptionListItem", () => {
     expect(wrapper.emitted()["delete-transcription"][0][0]).toEqual(4);
   });
 
-  it.skip("should have no accessibility violations", async () => {
-    const results = await axe(wrapper.element);
+  it("emits voice field change event when typing in text input", () => {
+    wrapper.find("input[type='text']").setValue("a value");
 
-    expect(results).toHaveNoViolations();
+    expect(wrapper.emitted("voice-field-change")).toBeTruthy();
+    expect(wrapper.emitted()["voice-field-change"][0][0]).toEqual({
+      voice: "a value",
+      id: 4,
+    });
+  });
+
+  it("emits text field change event when typing in textarea", () => {
+    wrapper.find("textarea").setValue("a value");
+
+    expect(wrapper.emitted("text-field-change")).toBeTruthy();
+    expect(wrapper.emitted()["text-field-change"][0][0]).toEqual({
+      text: "a value",
+      id: 4,
+    });
   });
 });
