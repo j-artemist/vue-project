@@ -20,6 +20,9 @@ export default {
   mounted() {
     this.resize();
   },
+  updated() {
+    this.resize();
+  },
 };
 </script>
 
