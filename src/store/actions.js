@@ -12,6 +12,7 @@ export default {
     commit("setNewTranscription");
   },
   async getTranscriptions({ commit }) {
+    commit("setError", null);
     commit("setLoading", true);
     try {
       const response = await fetch(TRANSCRIPTION_ENDPOINT);
@@ -23,6 +24,7 @@ export default {
     commit("setLoading", false);
   },
   async uploadTranscriptions({ commit, state }) {
+    commit("setError", null);
     commit("setLoading", true);
     try {
       const config = {
