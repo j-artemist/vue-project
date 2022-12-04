@@ -14,6 +14,7 @@ describe("utils", () => {
       expect(result).toEqual(12);
     });
   });
+
   describe("createEmptyTranscription", () => {
     it("returns expected empty transcription", async () => {
       const ids = [3, 4, 7, 3, 5, 8, 12];

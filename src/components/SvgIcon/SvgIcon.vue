@@ -9,11 +9,9 @@ export default {
       required: true,
     },
   },
-
   computed: {
     dynamicComponent() {
       const name = this.name;
-
       return defineAsyncComponent(() => import(`./icons/icon-${name}.vue`));
     },
   },

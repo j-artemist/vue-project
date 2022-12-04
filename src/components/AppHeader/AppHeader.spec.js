@@ -9,6 +9,7 @@ describe("AppHeader", () => {
         ["right-content"]: "right content",
       },
     });
+
     expect(wrapper.text()).toBe("left content right content");
   });
 });

@@ -34,5 +34,3 @@ header {
   flex-wrap: wrap;
 }
 </style>
-
-//TODO do we need wrap?

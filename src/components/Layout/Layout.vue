@@ -17,7 +17,6 @@ export default {
 .layout {
   height: 100vh;
   width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
   background: var(--background-color);
 }
