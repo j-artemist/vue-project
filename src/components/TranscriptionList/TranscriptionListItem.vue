@@ -95,7 +95,7 @@ export default {
 .title-container {
   display: flex;
   justify-content: space-between;
-  min-height: 26px;
+  min-height: 32px;
 }
 
 /* making this accessible when on a touch screen and to screen readers */

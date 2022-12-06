@@ -31,4 +31,8 @@ button {
   cursor: pointer;
   background: transparent;
 }
+
+button:focus {
+  outline: 1px solid var(--blue-color);
+}
 </style>
