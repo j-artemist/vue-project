@@ -2,10 +2,7 @@ export function setupFetchStub(data) {
   return function fetchStub() {
     return new Promise((resolve) => {
       resolve({
-        json: () =>
-          Promise.resolve({
-            data,
-          }),
+        json: () => Promise.resolve(data),
       });
     });
   };

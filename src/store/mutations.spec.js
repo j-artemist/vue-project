@@ -33,16 +33,16 @@ describe("mutations", () => {
     it("adds new transcription to transcription state ", () => {
       const state = {
         transcriptions: [
-          { voice: "voice 1", id: 1, text: "text 1" },
-          { voice: "voice 2", id: 2, text: "text 2" },
+          { title: "voice 1", id: 1, text: "text 1" },
+          { title: "voice 2", id: 2, text: "text 2" },
         ],
       };
       mutations.setNewTranscription(state);
 
       expect(state.transcriptions).toStrictEqual([
-        { voice: "voice 1", id: 1, text: "text 1" },
-        { voice: "voice 2", id: 2, text: "text 2" },
-        { voice: "", id: 3, text: "" },
+        { title: "voice 1", id: 1, text: "text 1" },
+        { title: "voice 2", id: 2, text: "text 2" },
+        { title: "", id: 3, text: "" },
       ]);
     });
   });
@@ -53,12 +53,12 @@ describe("mutations", () => {
         transcriptions: [],
       };
 
-      const payload = [{ voice: "voice 1", id: 1, text: "text 1" }];
+      const payload = [{ title: "voice 1", id: 1, text: "text 1" }];
 
       mutations.setTranscriptions(state, payload);
 
       expect(state.transcriptions).toStrictEqual([
-        { voice: "voice 1", id: 1, text: "text 1" },
+        { title: "voice 1", id: 1, text: "text 1" },
       ]);
     });
   });

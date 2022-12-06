@@ -16,12 +16,10 @@
 ### Notes
 
 <br>
-
 I decided to use Vue 2 rather then Vue 3 as that is the version I have used in the past as I would get a better outcome then learning all the new changes in Vue 3 while doing this challenge.
-In addition to this I used Vuex for state management and for the tests Vue test utils. 
+In addition to this I used Vuex for state management and for the tests Vue test utils.
 
 <br>
-
 
 ### Challenges and learnings
 
@@ -30,7 +28,6 @@ In addition to this I used Vuex for state management and for the tests Vue test 
 #### Checkbox styling
 
 <br>
-
 This is the part that I am not 100% happy with.
 I found the checkbox tricky to style in the exact colour and with the exact tick shape as in the design.
 From a few solutions I tried this is the closest to the design I could get.
@@ -70,7 +67,6 @@ In retrospect I could have used testing library to do integration style tests fo
 ### User error notifications
 
 <br>
-
 What I would do next is proper error handling that notifies the user via a toast or an alert component
 
 <br>
@@ -84,7 +80,6 @@ Even though not mentioned on the design, the SVG buttons could really do with a 
 ### Test updates
 
 <br>
-
 I wanted to be thorough but some of the tests are not complete.
 
 One big TODO is the Transcription view folder which I hadn't completed.

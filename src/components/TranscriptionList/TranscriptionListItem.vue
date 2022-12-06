@@ -16,15 +16,15 @@ export default {
   },
   props: {
     id: { required: true, type: Number },
-    voice: { required: true, type: String },
-    text: { required: true, type: String },
+    title: { required: true, type: String, default: "" },
+    text: { required: true, type: String, default: "" },
   },
   methods: {
     emitDeleteEvent() {
       this.$emit("delete-transcription", this.id);
     },
-    emitVoiceFieldChangeEvent(value) {
-      this.$emit("voice-field-change", { id: this.id, voice: value });
+    emitTitleFieldChangeEvent(value) {
+      this.$emit("title-field-change", { id: this.id, title: value });
     },
     emitTextFieldChangeEvent(value) {
       this.$emit("text-field-change", { id: this.id, text: value });
@@ -39,12 +39,13 @@ export default {
       <check-box ariaLabel="check item" /><svg-icon name="person" />
     </div>
     <div class="content">
-      <div class="label-container">
+      <div class="title-container">
         <text-input
-          @text-input-change="emitVoiceFieldChangeEvent"
-          :value="voice"
-          ariaLabel="name of voice"
-          placeholder="name of voice"
+          @text-input-change="emitTitleFieldChangeEvent"
+          :title="title"
+          ariaLabel="title"
+          placeholder="title"
+          :value="title"
         />
         <div class="icon-button-container">
           <icon-button
@@ -57,7 +58,7 @@ export default {
       <div class="text-area-container">
         <text-area
           @text-area-change="emitTextFieldChangeEvent"
-          ariaLabel="transcribed recording"
+          ariaLabel="transcribed text"
           :value="text"
           id="text"
           placeholder="transcribed text"
@@ -73,7 +74,6 @@ export default {
   list-style-type: none;
   display: flex;
   align-items: baseline;
-
   padding: 24px;
 }
 
@@ -92,27 +92,36 @@ export default {
   flex-direction: column;
 }
 
-.label-container {
+.title-container {
   display: flex;
   justify-content: space-between;
+  min-height: 26px;
 }
 
-.label {
-  font-size: var(--font-size-root);
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  color: var(--medium-gray-color);
-}
-
-/* if device has no touch screen */
+/* making this accessible when on a touch screen and to screen readers */
 @media (any-pointer: fine) {
   .icon-button-container {
-    visibility: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
 
 .list-item:hover .icon-button-container {
-  visibility: visible;
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
 }
 
 .text-area-container {

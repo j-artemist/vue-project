@@ -6,9 +6,9 @@ describe("TranscriptionList", () => {
   const wrapper = shallowMount(TranscriptionList, {
     propsData: {
       items: [
-        { voice: "voice 1", id: 1, text: "text 1" },
-        { voice: "voice 2", id: 2, text: "text 2" },
-        { voice: "voice 3", id: 3, text: "text 3" },
+        { title: "title 1", id: 1, text: "text 1" },
+        { title: "title 2", id: 2, text: "text 2" },
+        { title: "title 3", id: 3, text: "text 3" },
       ],
     },
   });

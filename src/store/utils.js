@@ -8,7 +8,7 @@ export function createEmptyTranscription(ids) {
   const id = ids.length > 0 ? biggestNumberInArray(ids) + 1 : 1;
 
   return {
-    voice: "",
+    title: "",
     text: "",
     id,
   };
@@ -16,4 +16,24 @@ export function createEmptyTranscription(ids) {
 
 export function removeObjectWithId(arr, id) {
   return arr.filter((obj) => obj.id !== id);
+}
+
+export function transformTranscriptionsToItems(transcriptions) {
+  return transcriptions.map((transcription) => {
+    return {
+      id: transcription.id,
+      text: transcription.text,
+      title: transcription.voice,
+    };
+  });
+}
+
+export function transformItemsToTranscriptions(items) {
+  return items.map((item) => {
+    return {
+      id: item.id,
+      text: item.text,
+      voice: item.title,
+    };
+  });
 }

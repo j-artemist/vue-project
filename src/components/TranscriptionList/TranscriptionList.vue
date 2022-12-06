@@ -16,10 +16,10 @@ export default {
   <form class="transcription-form">
     <ul class="transcription-list">
       <transcription-list-item
-        v-for="(item, i) in items"
-        v-bind:key="i"
+        v-for="item in items"
+        v-bind:key="item.id"
         :id="item.id"
-        :voice="item.voice"
+        :title="item.title"
         :text="item.text"
         v-on="$listeners"
       />

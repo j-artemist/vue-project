@@ -33,7 +33,7 @@ export default {
   <transcriptions
     :items="transcriptions"
     @text-field-change="handleFormChange"
-    @voice-field-change="handleFormChange"
+    @title-field-change="handleFormChange"
     @delete-transcription="deleteTranscription"
     @upload-data="uploadTranscriptions"
     @get-data="getTranscriptions"
